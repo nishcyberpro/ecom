@@ -1,0 +1,11 @@
+Needed page
+-homepage
+-all product page with filter including search /best seller/ featured / new /categories etc
+-single product page
+-checkout page
+-dashboard for admin
+-dashboard for customer
+-contact us page
+-blog page
+-privacy policy page
+--about us page
