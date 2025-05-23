@@ -5,6 +5,7 @@ import Navbar1 from "../components/Navbar1";
 import Container from "../containers/Container";
 import { useCartStore } from "../store/cartStore";
 import { FaPlus } from "react-icons/fa";
+import Link from "next/link";
 
 const Cart = () => {
   const { items, addToCart, removeFromCart, clearCart } = useCartStore();
@@ -122,7 +123,8 @@ const Cart = () => {
                 <p>Rs.450</p>
               </div>
               <div className="w-full">
-                <SolidButton btnText="Proceed to Checkout" />
+                <Link href="/checkout"><SolidButton btnText="Proceed to Checkout"  /></Link>
+                
               </div>
             </div>
           </div>

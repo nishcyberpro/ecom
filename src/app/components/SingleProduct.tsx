@@ -6,6 +6,7 @@ import { OutlineButton, SolidButton } from "./Buttons";
 import { products } from "../data/products";
 import { useCartStore } from "../store/cartStore";
 import { Input, Modal } from "antd";
+import toast from "react-hot-toast";
 
 const images = [
   "https://res.cloudinary.com/dlexgdp4i/image/upload/v1659875622/d2ojm3r123ezijr29mwq.jpg",
@@ -146,6 +147,7 @@ const SingleProduct = ({ title }: { title: string }) => {
               btnText="Add to Cart"
               onClick={() => {
                 addToCart(product[0], quantity);
+                toast.success("Item added to cart!");
               }}
             />
           </div>

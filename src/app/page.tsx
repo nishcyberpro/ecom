@@ -22,7 +22,7 @@ export default function Home() {
 
       <div className="flex w-screen items-center justify-center">
         <div className="flex  self-center w-full max-w-[1400px]  items-start justify-center mt-2 gap-4">
-          <SideMenu />
+          {/* <SideMenu /> */}
           <div className="flex w-full max-w-[1400px] items-center justify-start gap-4 flex-col">
             {/* <SideMenu /> */}
             <SubNav />

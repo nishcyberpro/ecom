@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import Navbar1 from "../components/Navbar1";
+import { useCartStore } from "../store/cartStore";
 
 const CheckOut = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulate login state
-
+  const { items, addToCart, removeFromCart, clearCart } = useCartStore();
   return (
     <div className="flex flex-col gap-4">
       <Navbar1 />
@@ -78,7 +79,7 @@ const CheckOut = () => {
                     type="text"
                     id="firstName"
                     required
-                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    className="block text-sm font-medium text-gray-700 h-[20px]"
                   />
                 </div>
                 <div>
@@ -183,28 +184,51 @@ const CheckOut = () => {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-lg font-semibold mb-4">Cart Summary</h3>
             <ul className="space-y-4">
-              <li className="flex justify-between">
-                <span>1 Bike+ Basics Package</span>
-                <span>$2,495.00</span>
-              </li>
-              <li className="flex justify-between">
-                <span>1 Peloton Membership</span>
-                <span>$39.00</span>
-              </li>
+              {items &&
+                items.map((item) => (
+                  <li className="flex justify-between">
+                    <span>{item.name}</span>
+                    <span>X{item.quantity}</span>
+                    <span>Rs.{(item.quantity * item.price).toFixed(2)}</span>
+                  </li>
+                ))}
             </ul>
+
             <hr className="my-4" />
             <div className="flex justify-between">
-              <span>Subtotal (2):</span>
-              <span>$2,534.00</span>
+              <span>
+                Subtotal (
+                {items.reduce((sum: number, item) => sum + item.quantity, 0)})
+              </span>
+              <span>
+                Rs.
+                {items
+                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
+                  .toFixed(2)}
+              </span>
             </div>
             <div className="flex justify-between">
-              <span>Est. Tax:</span>
-              <span>$0.00</span>
+              <span>
+                Shipping (
+                {items.reduce((sum: number, item) => sum + item.quantity, 0)})
+              </span>
+              <span>
+                Rs.
+                {items
+                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
+                  .toFixed(2)}
+              </span>
             </div>
+
             <hr className="my-4" />
             <div className="flex justify-between font-bold">
               <span>Total:</span>
-              <span>$2,534.00</span>
+              <span>
+                Rs.
+                {items
+                  .reduce((sum, item) => sum + item.price * item.quantity, 0)
+                  .toFixed(2)}
+              </span>
             </div>
           </div>
         </div>
